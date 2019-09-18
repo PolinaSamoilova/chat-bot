@@ -8,10 +8,7 @@ then
     git pull https://github.com/PolinaSamoilova/chat-bot
 fi
 
-echo were:
-git status
 git add .
-echo became:
 git status
 
 if [[ "$1" == "push" ]]
