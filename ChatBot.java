@@ -11,10 +11,22 @@ public class ChatBot {
         System.out.println("    authors - for printing our names");
     }
 
+    public static void echo(){
+        System.out.println("Hello world!\nYou can use:");
+    }
+
     public static void main(String[] args) {
         var in = new Scanner(System.in);
         var dictionary = new HashMap<String, Consumer<String>>();
         dictionary.put("help", s -> help());
+        dictionary.put("echo", s -> System.out.println(s));
+        if (args.length == 1 && dictionary.containsKey(args[0])){
+            if (args.length > 1){
+                dictionary.get(n).accept(args[1]);
+            } else {
+                dictionary.get(n).accept("");
+            }
+        }
         while(true){
             var n = in.nextLine();
             if (dictionary.containsKey(n)){
