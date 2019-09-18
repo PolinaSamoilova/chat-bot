@@ -4,7 +4,8 @@ then
 fi
 
 if [[ "$1" == "pull" ]]
-then 
+then
+    git init
     git pull https://github.com/PolinaSamoilova/chat-bot
 fi
 
