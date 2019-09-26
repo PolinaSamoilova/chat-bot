@@ -1,2 +1,5 @@
 javac ChatBot.java
-java ChatBot
+if [[ "$?" == "0" ]] 
+then 
+	java ChatBot
+fi
