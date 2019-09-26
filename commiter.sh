@@ -1,7 +1,8 @@
+#git config --global user.email "evgeniy8a8p@gmail.com"
+#git config --global user.name "PapaKarlo787"
+
 if [[ "$1" == "addrepo" ]]
 then 
-	git config --global user.email "evgeniy8a8p@gmail.com"
-	git config --global user.name "PapaKarlo787"
     git remote add chatbot https://github.com/PolinaSamoilova/chat-bot
 fi
 

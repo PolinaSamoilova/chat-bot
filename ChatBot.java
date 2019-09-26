@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Arrays;
 import java.util.function.Consumer;
 
 
@@ -23,31 +24,29 @@ public class ChatBot {
 
     public static void main(String[] args) {
         var in = new Scanner(System.in);
-        var coms = new HashMap<String, Consumer<String>>();
+        var coms = new HashMap<String, Consumer<String[]>>();
         coms.put("help", s -> help());
-        coms.put("echo", s -> System.out.println(s));
+        coms.put("echo", s -> System.out.println(String.join(" ", s)));
         coms.put("exit", s -> System.exit(0));
         coms.put("authors", s -> auths());
+        executor(args, coms);
 
-        if (args.length > 0 && coms.containsKey(args[0])){
-            if (args.length > 1){
-                coms.get(args[0]).accept(args[1]);
-            } else {
-                coms.get(args[0]).accept("");
-            }
-            System.exit(0);
-        } else if (args.length != 0) {
-            System.out.println("No such comands!");
-            System.exit(0);
-        }
-
-        while(true){
-            var n = in.nextLine();
-            if (coms.containsKey(n)){
-                coms.get(n).accept("");
-            } else {
-                 System.out.println("No such comands!");
-            }
+        while(true)
+        {
+            var line = in.nextLine();
+            executor(line.split(" "), coms);
         }
     }
+
+    private static void executor(String[] args,
+								 HashMap<String, Consumer<String[]>> coms)
+    {
+		if (args.length == 0)
+			return;
+		if (coms.containsKey(args[0])){
+			coms.get(args[0]).accept(Arrays.copyOfRange(args, 1, args.length));
+		} else {
+			 System.out.println("No such comands!");
+		}
+	}
 }
