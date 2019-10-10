@@ -1,0 +1,7 @@
+javac chatBot/*.java
+if [[ "$?" == "0" ]] 
+then 
+    clear
+	java chatBot.ChatBot
+	rm chatBot/*.class
+fi

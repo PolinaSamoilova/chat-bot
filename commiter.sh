@@ -20,4 +20,3 @@ then
     git commit -m "$2"
     git push -u chatbot master
 fi
-
